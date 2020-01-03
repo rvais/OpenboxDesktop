@@ -1,0 +1,67 @@
+## GNOME PolicyKit and Keyring
+eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg --daemonize --login) &
+
+## Set root window colour
+hsetroot -solid "#2E3436" &
+
+## Start compositor for Xorg window managers
+compton --config ~/.config/compton.conf -b &
+
+## Restore wallpaper
+nitrogen --restore &
+
+## Start tint2 panel
+tint2 &
+
+## Start network manager app
+nm-applet &
+
+## Enable power management
+# xfce4-power-manager &
+
+## xcompmgr for real transparency
+xcompmgr &
+
+## Application privilege management (similar to sudo) and key ring
+lxpolkit &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg --daemonize --login) &
+
+## Start conky
+conky -q -c ~/.config/conky/conkyrc &
+
+## Touchpad and mouse support
+#/usr/bin/xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1 &
+#/usr/bin/xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Accel Speed" .5 &
+
+## Dropdown terminal
+# guake &
+
+## Sound management and volume keys
+xfce4-volumed &
+# pnmixer &
+# volumeicon &
+
+## Start Thunar Daemon
+# thunar --daemon &
+
+## Start xscreensaver
+xscreensaver -no-splash &
+
+## Start Clipboard manager
+# clipit &
+gpaste-client &
+
+## Set keyboard settings - 250 ms delay and 25 cps (characters per second) repeat rate.
+## Adjust the values according to your preferances.
+xset r rate 250 25 &
+
+## Turn on/off system beep
+xset b off &
+
+## start numlock
+numlockx &
+
+## Misc
+#xfce4-panel &
+#blueman-applet &
+#polybar openbox-bar &

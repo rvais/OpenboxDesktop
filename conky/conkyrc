@@ -1,0 +1,153 @@
+conky.config = {
+-- conky configuration
+
+-- The list of variables has been removed from this file in favour
+-- of keeping the documentation more maintainable.
+-- Check http://conky.sf.net for an up-to-date-list.
+
+-- For ideas about how to modify conky, please see:
+-- http://crunchbanglinux.org/forums/topic/59/my-conky-config/
+
+-- For help with conky, please see:
+-- http://crunchbanglinux.org/forums/topic/2047/conky-help/
+
+-- Enjoy! :)
+--#############################################
+-- Settings
+--#############################################
+-- Use Xft?
+	use_xft = true,
+	font = 'URV Palladio L:size=14',
+	font = 'URV Chancery L:size=14',
+	font = 'Monospace:size=14',
+	font = 'Arial Black:size=12',
+	xftalpha = 0.7,
+	text_buffer_size = 2048,
+
+-- Update interval in seconds
+	update_interval = 1,
+
+-- This is the number of times Conky will update before quitting.
+-- Set to zero to run forever.
+	total_run_times = 0,
+
+-- Create own window instead of using desktop (required in nautilus)
+	own_window = true,
+	own_window_transparent = true,
+	own_window_type = 'desktop',
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+
+-- Use double buffering (reduces flicker, may not work for everyone)
+	double_buffer = true,
+
+-- Minimum size of text area
+	minimum_width = 300, minimum_height = 0,
+
+-- Draw shades?
+	draw_shades = true,
+
+-- Draw outlines?
+	draw_outline = true,
+
+-- Draw borders around text
+	draw_borders = false,
+
+-- Stippled borders?
+	stippled_borders = 0,
+
+-- border margins
+	border_margin = '5',
+
+-- border width
+	border_width = 1,
+
+-- Default colors and also border colors
+	default_color = 'white',
+	own_window_colour = 'white',
+
+-- Text alignment, other possible values are commented
+	alignment = 'middle_right',
+
+-- Gap between borders of screen and text
+-- same thing as passing -x at command line
+	gap_x = 35,
+	gap_y = 50,
+
+-- Subtract file system buffers from used memory?
+	no_buffers = true,
+
+-- set to yes if you want all text to be in uppercase
+	uppercase = false,
+
+-- number of cpu samples to average
+-- set to 1 to disable averaging
+	cpu_avg_samples = 2,
+
+-- number of net samples to average
+-- set to 1 to disable averaging
+	net_avg_samples = 2,
+
+-- Force UTF8? note that UTF8 support required XFT
+	override_utf8_locale = true,
+
+-- Add spaces to keep things from moving about?  This only affects certain objects.
+	use_spacer = 'none',
+
+};
+
+conky.text = [[
+${font URV Palladio L:italic:size=12}Date and Time:${font}
+
+${alignc 40}${font Chancery L:bold:size=26}${time %H:%M:%S}${font}
+
+${font URV Palladio L:italic:size=10}${alignc}${time %a %d %b %Y}
+
+${font sans-serif:bold:size=12}SYSTEM ${hr 2}${font}
+${font Arial Black:style=Bold:size=14}\#!${font} Fedora ${alignr 10}$nodename
+${font Monospace:normal:size=11}$sysname $kernel ${alignr 10} $machine
+Uptime: ${alignr 10}${uptime}
+
+${alignc}CPU: ${cpu cpu}% ${alignr 10}${cpugraph 40,120 cpu 000000 A7CC5C -t}
+HDD (root): ${fs_used /}/${fs_size /} ${alignr}${fs_bar 10,100 /}
+HDD (/home): ${fs_used /home}/${fs_size /home} ${alignr}${fs_bar 10,100 /home}
+Swap: $swap/$swapmax ${alignr 10} ${swapbar 10,100}
+RAM: $memperc% ${alignr 10} ${membar 10,100}
+     $mem/$memmax
+${font sans-serif:bold:size=12}BATTERY ${hr 2}${font}
+${battery_percent BAT0}% ${alignr 10}${battery_bar 10,100 BAT0}
+${battery_percent BAT1}% ${alignr 10}${battery_bar 10,100 BAT1}
+${battery_percent BAT2}% ${alignr 10}${battery_bar 10,100 BAT1}
+${battery_percent BAT3}% ${alignr 10}${battery_bar 10,100 BAT1}
+${font sans-serif:bold:size=12}NETWORK ${hr 2}${font}
+${if_existing /proc/net/route wlan0} ${font Monospace:normal:size=11}
+Up: ${upspeed wlan0} kb/s ${alignr}${upspeedgraph wlan0 11,90 789E2D A7CC5C}
+Down: ${downspeed wlan0} kb/s ${alignr}${downspeedgraph wlan0 11,90 789E2D A7CC5C}
+Upload: ${alignr}${totalup wlan0}
+Download: ${alignr}${totaldown wlan0}
+Signal: ${wireless_link_qual wlan0}% ${alignr}${wireless_link_bar 11,90 wlan0}${else}${if_existing /proc/net/route eth0}
+Up: ${upspeed eth0} kb/s ${alignr}${upspeedgraph eth0 11,90 789E2D A7CC5C}
+Down: ${downspeed eth0} kb/s ${alignr}${downspeedgraph eth0 11,90 789E2D A7CC5C}
+Upload: ${alignr}${totalup eth0}
+Download: ${alignr}${totaldown eth0}${endif}${else}${if_existing /proc/net/route eth1}
+Up: ${upspeed eth1} kb/s ${alignr}${upspeedgraph eth1 11,90 789E2D A7CC5C}
+Down: ${downspeed eth1} kb/s ${alignr}${downspeedgraph eth1 11,90 789E2D A7CC5C}
+Upload: ${alignr}${totalup eth1}
+Download: ${alignr}${totaldown eth1}${endif}${else} Network Unavailable${endif}${font}
+${font sans-serif:bold:size=12}SHORTCUT KEYS ${hr 2}${font}
+${font Monospace:normal:size=10}Alt + F2 ${alignr 10}Run Dialog
+Alt + F2 ${alignr 10}Search -> Run program
+Alt + F4 ${alignr 10}Close active window
+Alt + Space ${alignr 10}Show application menu
+Alt + Enter ${alignr 10}Maximize window
+Alt + Tab ${alignr 10}Switch window
+Alt + T ${alignr 10}Terminal
+Alt + W ${alignr 10}Web browser
+Alt + G ${alignr 10}Text editor (GVim)
+(Alt + )PrtScr ${alignr 10}Take screenshot
+Super + E ${alignr 10}File manager
+Super + L ${alignr 10}Lock the Screen
+Super + V ${alignr 10}Volume panel
+Super + X ${alignr 10}Log Off
+Super + Space ${alignr 10}Show system menu
+Ctrl + Alt + Dell ${alignr 10}Task manager
+]];

@@ -1,0 +1,68 @@
+"""" nastaveni vlastnich barvicek, cislovani radku
+if has('gui_running')
+  " Pro gvim 
+  colorscheme mycolor
+else 
+  " Pro terminal
+  colorscheme blueknight
+endif
+
+syntax on
+set number
+
+set backspace=2
+set ruler
+
+ " Ukazuje prikaz psany v cmd rezimu a podtrhava aktualni radek
+set showcmd
+set cursorline
+
+"""" nastaveni kodovani protoze windows
+set fileencoding=utf-8
+
+"""" nastaveni vlastnosti tabulatoru
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+"""" nastaveni vychoziho adresare
+cd ~/
+autocmd BufEnter * silent! lcd %:p:h
+
+"""" nastaveni makefile (no tab expand, tabsize 4)
+autocmd FileType make setlocal noexpandtab
+autocmd FileType make setlocal tabstop=4
+autocmd FileType make setlocal shiftwidth=4
+
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+""" key binding - NerdTree a taby
+" Nerd Tree - strom souboru primo ve vimu CTRL+r
+nmap <silent> <C-r> :NERDTreeToggle<CR>
+" Premapovani redo
+nmap <C-y> :redo<CR>
+" Novy tab - vytvori novy tab (Neni split screen!) CTRL+t
+nmap <silent> <C-t> :tabnew<CR>
+" Zavrit tab - nejde zavrit posledni tab CTRL+c
+nmap <silent> <C-c> :tabclose<CR>
+" Nerd prepinani tabu - dalsi CTRL+n(ext)
+nmap <silent> <C-n> :tabnext<CR>
+" Nerd prepinani tabu - dalsi CTRL+b(ack)
+nmap <silent> <C-b> :tabprev<CR>
+
+
+"""" key binding - splitscreen
+" vertical split - CTRL+s
+if has('gui_running')
+  " Pro gvim 
+  nmap <silent> <C-s> :vsplit<CR>
+  nmap <silent> <C-q> :q<CR>
+else 
+  " Pro terminal
+  nmap <silent> <C-x> :vsplit<CR>
+  nmap <silent> qq :q<CR>
+endif
+
+

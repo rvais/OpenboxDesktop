@@ -1,0 +1,29 @@
+[global_config]
+  broadcast_default = off
+  enabled_plugins = LaunchpadCodeURLHandler, APTURLHandler, LaunchpadBugURLHandler
+  title_hide_sizetext = True
+  window_state = maximise
+[keybindings]
+  help = ""
+  layout_launcher = ""
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = Monospace 11
+    palette = "#000000:#cd0000:#00cd00:#cdcd00:#2f7aff:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#3737ff:#ff00ff:#00ffff:#ffffff"
+    scrollback_infinite = True
+    scrollback_lines = 2000
+    show_titlebar = False
+    use_system_font = False
