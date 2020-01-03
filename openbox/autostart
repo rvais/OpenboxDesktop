@@ -38,8 +38,7 @@ conky -q -c ~/.config/conky/conkyrc &
 
 ## Sound management and volume keys
 xfce4-volumed &
-# pnmixer &
-# volumeicon &
+volumeicon &
 
 ## Start Thunar Daemon
 # thunar --daemon &

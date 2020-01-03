@@ -15,10 +15,10 @@ GIT_REPO="https://github.com/rvais/OpenboxDesktop.git"
 DOMAIN="redhat.com"
 
 echo "Installing packages ..."
-
-dnf install -y ansible cb-compositor conky g++ gcc gimp git gmrun gnuplot gpaste gvim hexchat htop java-1.8.0-openjdk \
-    langpacks-cs maven mc NetworkManager nitrogen nm-applet numlockx openbox perl python3 terminator tint2 vim vlc \
-    xbacklight xcompmgr xfce4-pulseaudio-plugin xfce4-screenshooter xorg-x11-server-util xscreensaver
+sudo dnf update
+sudo dnf install -y ansible conky g++ gcc gimp git gmrun gnuplot gpaste gvim hexchat htop java-1.8.0-openjdk \
+    langpacks-cs maven mc NetworkManager nitrogen network-manager-applet numlockx openbox perl python3 terminator tint2 vim vlc \
+    xbacklight xcompmgr xfce4-pulseaudio-plugin xfce4-screenshooter xorg-x11-server-utils xscreensaver
 
 if [ -f "$SSH_DIR/$SSH_KEY" ]; then 
   echo "SSH key '$SSH_DIR/$SSH_KEY' already exists."
@@ -46,10 +46,9 @@ for ITEM in $(ls); do
     echo "Configuring $ITEM ..."
     if [ "$ITEM" == "vim" ]; then
       VIM_DIR=$(ls -1 $VIM_PATH | grep -P -e "vim\d+")
-      echo "VIM_DIR $VIM_DIR"
       if [ -d "${VIM_PATH%/}/$VIM_DIR" ]; then
-        cp -r -t "${VIM_PATH%/}/$VIM_DIR" "${HERE%/}/vim/colors/."
-        cp "${HERE%/}/vim/vimrc" "${HOME_DIR%/}/.vimrc"
+        sudo cp -r -t "${VIM_PATH%/}/${VIM_DIR%/}/colors" "${HERE%/}/vim/colors/."
+        sudo cp "${HERE%/}/vim/vimrc" "${HOME_DIR%/}/.vimrc"
       else
         echo "Couldn't find specific version (versioned directory) in $VIM_PATH. Skipping configuration of $ITEM..."
       fi

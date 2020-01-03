@@ -355,8 +355,8 @@
           <enabled>true</enabled>
           <name>Lock screen</name>
         </startupnotify>
-        <!-- command>xscreensaver-command -lock</command -->
-        <command>dm-tool lock</command>
+        <command>xscreensaver-command -lock</command>
+        <!--command>dm-tool lock</command-->
       </action>
     </keybind>
     <keybind key="A-g">
